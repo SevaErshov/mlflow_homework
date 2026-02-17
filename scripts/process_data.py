@@ -46,6 +46,9 @@ def process_data():
     
     X_train = X_train[:params['train_size']]
     y_train = y_train[:params['train_size']]
+    
+    dataset = mlflow.data.from_pandas(df, name='raw_dataset')
+    mlflow.log_input(dataset, context='training and evaluation')
 
     logger.info(f'    Размер тренировочного датасета: {len(y_train)}')
     logger.info(f'    Размер тестового датасета: {len(y_test)}')
